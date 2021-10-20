@@ -1,0 +1,17 @@
+c7a5094980938cfcf1c82bdc96ef6ee7 *DESCRIPTION
+3743118358b91f7eeda702db03e69b5b *LICENSE
+7cf1cc9d8b59ddfdb03e9eaf85df980a *NAMESPACE
+3e44399e7df766bf316ec438bf64975b *R/alphabeta.R
+32c20e10941aafb3491bc5937850d7ae *R/dot_alphabeta.R
+18b476722411f85b0a1abe1e31b141c5 *README.md
+349adb1b9f3266c291c084e963f0bf6c *build/partial.rdb
+94ea8f48a3088f46df362e01efbe9f82 *inst/CITATION
+8c3cf68880c016c9fd999f61cd7700a6 *inst/tinytest/test_alpha.R
+31b7c63cd0bac66a7981917ca039fd5b *inst/tinytest/test_beta.R
+c42fef9f6bb4a8ea64c7c2b671b5da8f *inst/tinytest/test_dotalpha.R
+a9f411a41939b5874708b4e761f43f98 *inst/tinytest/test_dotbeta.R
+cce3d74c24935e125bbe4eb240332184 *man/alpha.Rd
+ccf4d1daaf1244e8b7ebbe6ca2175a0b *man/beta.Rd
+0a2b49a4966fc6c325764ee8ff45934b *man/dot-alpha.Rd
+e78d7c4137b742ee6849574f010cd997 *man/dot-beta.Rd
+a23515fd741263fc7167e31f944aa2c5 *tests/tinytest.R
