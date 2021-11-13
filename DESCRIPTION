@@ -1,8 +1,8 @@
 Package: proxirr
 Type: Package
 Title: Alpha and Beta Proximity to Irreplaceability
-Date: 2021-10-13
-Version: 0.1
+Date: 2021-11-13
+Version: 0.2
 Authors@R: 
   person(given = "Daniele",
          family = "Baisero",
@@ -17,12 +17,12 @@ Description: Functions to measure Alpha and Beta Proximity to Irreplaceability.
     <doi:10.1111/cobi.13806>.
 License: MIT + file LICENSE
 Encoding: UTF-8
-Suggests: tinytest
+Suggests: tinytest, utils
 RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2021-10-19 14:12:04 UTC; redlist
+Packaged: 2021-11-13 12:13:27 UTC; redlist
 Author: Daniele Baisero [aut, cre, cph]
     (<https://orcid.org/0000-0002-1266-7174>)
 Maintainer: Daniele Baisero <daniele.baisero@gmail.com>
 Repository: CRAN
-Date/Publication: 2021-10-20 06:40:02 UTC
+Date/Publication: 2021-11-13 18:20:02 UTC

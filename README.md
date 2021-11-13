@@ -11,11 +11,16 @@ The methods for Alpha and Beta Irreplaceability were first described in:
 
 ## Installation
 
-### From cran
+### From CRAN
 
-COMING SOON.
+```r
+install.packages("proxirr")
+library(proxirr)
+```
 
-### From source-code
+### From source code
+
+Source code is available from [https://gitlab.com/daniele.baisero/proxirr_R](https://gitlab.com/daniele.baisero/proxirr_R).
 
 To install from source code you will need to install the 'devtools' package. Some of the devtools dependencies may have system requirements; please explore these if errors arise. Unfortunately these cannot be solved at the package level.
 
