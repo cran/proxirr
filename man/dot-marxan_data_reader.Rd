@@ -9,7 +9,7 @@
 \arguments{
 \item{input}{string - The address of a Marxan input.dat file.}
 
-\item{parameter}{string - The file to read. either 'spec' or 'puvspr'.}
+\item{datafile}{string - The file to read. either 'spec' or 'puvspr'.}
 }
 \value{
 A data.frame

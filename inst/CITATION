@@ -1,14 +1,17 @@
-citHeader("To cite proxirr in publications use:")
-
-citEntry(
-  entry = "article",
-  author = "Daniele Baisero and Richard Schuster and Andrew J. Plumptre",
-  title = "Redefining and Mapping Global Irreplaceability",
+bibentry(
+  bibtype = "Article",
+  title = "Redefining and mapping global irreplaceability",
+  author = list(
+    person("Daniele", "Baisero"),
+    person("Richard", "Schuster"),
+    person("Andrew J.", "Plumptre")
+    ),
   journal = "Conservation Biology",
-  year = "2021",
-  number  = "TBD",
-  volume  = "TBD",
-  pages   = "1-11",
-  url = "https://doi.org/10.1111/cobi.13806",
-  textVersion = "Baisero D., Schuster R. & Plumptre A.J. Redefining and Mapping Global Irreplaceability. Conservation Biology 2021;1-11. https://doi.org/10.1111/cobi.13806"
-)
+  year = 2022,
+  volume = "36",
+  number = "2",
+  pages = "e13806",
+  doi = "10.1111/cobi.13806",
+  url = "https://conbio.onlinelibrary.wiley.com/doi/abs/10.1111/cobi.13806",
+  eprint = "https://conbio.onlinelibrary.wiley.com/doi/pdf/10.1111/cobi.13806",
+  )

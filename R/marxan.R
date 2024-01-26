@@ -23,7 +23,7 @@
 #' Reads a marxan spec.dat or puvsp.dat file.
 #'
 #' @param input string - The address of a Marxan input.dat file.
-#' @param parameter string - The file to read. either 'spec' or 'puvspr'.
+#' @param datafile string - The file to read. either 'spec' or 'puvspr'.
 #' @return A data.frame
 #' @examples
 #' \dontrun{
@@ -66,9 +66,9 @@
   # read and output data
   # try importing as a csv, then as a tab-separated, then fail
   output = try(utils::read.csv(address,stringsAsFactors=FALSE),silent=TRUE)
-  if(class(output) == "try-error")
+  if(inherits(output, "try-error"))
     output = try(utils::read.delim(address,stringsAsFactors=FALSE),silent=TRUE)
-  if(class(output) == "try-error")
+  if(inherits(output, "try-error"))
     stop("the file appears to be neither comma- or tab- delimited")
   return(output)
 }
@@ -146,12 +146,12 @@ marxan_alphas = function(input, triage=FALSE) {
   # process global, target and alpha values
   puvspr$global = sapply(puvspr$species, function(x) {
     g = try(lalpha[[x]]$global, silent=TRUE);
-    if(class(g) == "try-error") g = NA
+    if(inherits(g, "try-error")) g = NA
     return(g)
   })
   puvspr$target = sapply(puvspr$species, function(x) {
     t = try(lalpha[[x]]$target, silent=TRUE);
-    if(class(t) == "try-error") t = NA
+    if(inherits(t, "try-error")) t = NA
     return(t)
   })
   # must use alpha, because .alpha is not vectorized
