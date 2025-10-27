@@ -2,9 +2,9 @@
 % Please edit documentation in R/marxan.R
 \name{marxan_run}
 \alias{marxan_run}
-\title{Marxan: Save Alpha and Beta Irreplaceabilities}
+\title{Marxan: Save Alpha, Beta and Gamma Irreplaceabilities}
 \usage{
-marxan_run(input, alphas = TRUE, betas = TRUE, triage = FALSE)
+marxan_run(input, alphas = TRUE, betas = TRUE, gammas = TRUE, triage = FALSE)
 }
 \arguments{
 \item{input}{string - The address of the input.dat file.}
@@ -13,19 +13,23 @@ marxan_run(input, alphas = TRUE, betas = TRUE, triage = FALSE)
 
 \item{betas}{logical - Should the Beta Irreplaceability output be saved?}
 
+\item{gammas}{logical - Should the Gamma of Irreplaceability output be saved?}
+
 \item{triage}{logical - Should features with unachievable targets be given an
-irreplaceability of 0? See \code{\link{alpha}} and \code{\link{beta}}.}
+irreplaceability of 0? See \code{\link{alpha}}, \code{\link{beta}} and
+\code{\link{beta}}.}
 }
 \value{
 TRUE
 }
 \description{
-Saves the outputs of \code{\link{marxan_alphas}} and \code{\link{marxan_betas}}
-in the marxan output folder.
+Saves the outputs of \code{\link{marxan_alphas}}, \code{\link{marxan_betas}},
+and \code{\link{marxan_gammas}} in the marxan output folder.
 }
 \details{
-Two files ('_proxirr_alphas.csv', '_proxirr_betas.csv') will be created
-prefixed with the scenario name indicated in 'input.dat' ('SCENNAME').
+Three files ('_proxirr_alphas.csv', '_proxirr_betas.csv',
+'_proxirr_gammas.csv') will be created prefixed with the scenario name
+indicated in 'input.dat' ('SCENNAME').
 }
 \examples{
 \dontrun{

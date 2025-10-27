@@ -162,4 +162,65 @@ beta = function(data, local = NULL, global = NULL, target = NULL, triage = FALSE
 }
 
 
+#' Calculate Gamma of Irreplaceability
+#'
+#' This function calculates Gamma of irreplaceability. Inputs can be either a
+#' vector of Alpha values, or a \code{data.frame} containing all necessary
+#' parameters needed to calculate Alpha values on a row-by-row basis.
+#' \itemize{
+#'   \item \strong{Vector Gamma measurement:} If \code{data} is a vector of
+#'   Alpha irreplaceability values, a single Gamma value will be calculated and
+#'   returned.
+#'   \item \strong{Dataframe Gamma measurement:} If \code{data} is a
+#'   \code{data.frame} and \code{local}, \code{global} and \code{target} are
+#'   strings representing field names in \code{data}, a vector of Alpha
+#'   irreplaceability values will be caluclated using these fields, and a Gamma
+#'   if irreplaceability value will be calculated on these, and returned.
+#' }
+
+#' @param data vector or data.frame - The input over which to calculate Gamma.
+#' @param local string - The name of the column containing the feature's
+#' representation at the site. Needed if data is a \code{data.frame}
+#' @param global string - The name of the column containing the feature's total
+#' available representation. Needed if data is a \code{data.frame}
+#' @param target string - The name of the column containing the feature's target.
+#'Needed if data is a \code{data.frame}
+#' @param triage logical - Should features with unachievable targets be ignored?
+#' Defaults to FALSE. If FALSE, these species will be always assigned an Alpha
+#' irreplaceability of 1 wherever they occur. If TRUE, these species will always
+#' be assigned an Alpha irreplaceabiltiy of 0.
+#' @param na.rm logical - Should lines with missing values (NA) be ignored? If
+#' data is a \code{vector}, NA values will be removed when calculating Gamma. If
+#' data is a \code{data.frame}, Alpha values will be calculated using
+#' \code{\link{alpha}} with \code{na.allow} set to TRUE, and then Gamma
+#' calculated ignoring \code{NA} values.
+#' @return A number
+#' @examples
+#' gamma(c(0.01, 0.5, 0.5))
+#' dtfrm = data.frame(
+#'   loc = c(1,25,45),
+#'   glob = c(100,100,100),
+#'   targ = c(50,50,50)
+#' )
+#' gamma(dtfrm, local = 'loc', global = 'glob', target = 'targ')
+#' @author Daniele Baisero, \email{daniele.baisero@gmail.com}
+#' @export
+gamma = function(data, local = NULL, global = NULL, target = NULL, triage = FALSE, na.rm = TRUE) {
+  # custom vector test
+  # needed for vector evaluation, because is.vector(NA) evaluates to TRUE
+  vtest = function(x) return(is.null(dim(x)) & length(x)>1) # replicated in alpha
+  #
+  # data vector run
+  if(vtest(data)) {
+    g = proxirr::.gamma(data, na.rm = na.rm)
+    return(g)
+  }
+  if(is.data.frame(data)) {
+    alphas = proxirr::alpha(local, global, target, df = data, triage = triage, na.allow = na.rm)
+    g = proxirr::.gamma(alphas, na.rm = na.rm)
+    return(g)
+  }
+  stop('Unexpected input; data should be a vector or data.frame.')
+}
+
 # Hic Sunt Dracones

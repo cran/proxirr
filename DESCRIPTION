@@ -1,15 +1,15 @@
 Package: proxirr
 Type: Package
-Title: Alpha and Beta Proximity to Irreplaceability
-Date: 2024-01-25
-Version: 0.4
+Title: Alpha, Beta and Gamma Proximity to Irreplaceability
+Version: 0.5
+Date: 2025-10-23
 Authors@R: 
   person(given = "Daniele",
          family = "Baisero",
          role = c("aut", "cre", "cph"),
          email = "daniele.baisero@gmail.com",
          comment = c(ORCID = "0000-0002-1266-7174"))
-Description: Functions to measure Alpha and Beta Proximity to Irreplaceability.
+Description: Functions to measure Alpha, Beta and Gamma Proximity to Irreplaceability.
   The methods for Alpha and Beta irreplaceability were first described in:
     Baisero D., Schuster R. & Plumptre A.J.
     Redefining and Mapping Global Irreplaceability.
@@ -18,12 +18,12 @@ Description: Functions to measure Alpha and Beta Proximity to Irreplaceability.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Suggests: testthat (>= 3.0.0), utils
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.3
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2024-01-26 15:35:05 UTC; redlist
-Author: Daniele Baisero [aut, cre, cph]
-    (<https://orcid.org/0000-0002-1266-7174>)
+Packaged: 2025-10-27 14:22:10 UTC; Daniele.Baisero
+Author: Daniele Baisero [aut, cre, cph] (ORCID:
+    <https://orcid.org/0000-0002-1266-7174>)
 Maintainer: Daniele Baisero <daniele.baisero@gmail.com>
 Repository: CRAN
-Date/Publication: 2024-01-26 15:50:02 UTC
+Date/Publication: 2025-10-27 15:00:02 UTC

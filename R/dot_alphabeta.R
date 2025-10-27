@@ -101,4 +101,48 @@
   return(b)
 }
 
+
+#' Calculate Gamma of Irreplaceability
+#'
+#' This function calculates Gamma of Irreplaceability from a vector of Alpha
+#' Irreplaceability values. Alpha Irreplaceability values can be calculated using
+#' \code{\link{.alpha}()}.
+#' 
+#' Gamma of Irreplaceability is not a true irreplaceability metric, but allows
+#' for ranking between sites better than Beta. It is a non-negative number where
+#' the integer component represents the number of species for whom the site is
+#' wholly irreplaceable (Alpha=1) plus a decimal component calculated as a Beta
+#' calculated on all species for whom the site is not irreplaceable (Alpha<1).
+#'
+#' @param alphas vector - A vector of numbers between 0-1.
+#' @param na.rm logical - Should missing values (NA) be removed?
+#' @return A non-negative number.
+#' @examples
+#' .gamma(alphas=c(0.1,0.32,0.5))
+#' .gamma(alphas=c(0.1,0.32,0.9))
+#' .gamma(alphas=c(0.1,0.32,1))
+#' .gamma(alphas=c(0.1,0.32,1,1))
+#' .gamma(alphas=c(0.1,0.32,NA), na.rm=TRUE)
+#' @author Daniele Baisero, \email{daniele.baisero@gmail.com}
+#' @references \doi{10.1111/cobi.13806}
+#' @export
+#' @keywords internal
+.gamma = function(alphas, na.rm = FALSE) {
+  if(!is.vector(alphas)) stop('alphas must be a vector')
+  if(!is.logical(na.rm)) stop('na.rm must be logical')
+  for(a in alphas) {
+    if(is.nan(a)) {
+      stop('at least one alpha element is not a number')
+    } else {
+      if(is.na(a)) {
+        if(!na.rm) stop('at least one NA element. Try with na.rm=TRUE')
+      } else {
+        if(0 > a | a > 1)  stop('at least one alpha element is not between 0 and 1')
+      }
+    }
+  }
+  g = sum(alphas == 1, na.rm = na.rm) + .beta(alphas[alphas != 1], na.rm = na.rm)
+  return(g) 
+}
+
 # Hic Sunt Dracones

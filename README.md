@@ -1,6 +1,6 @@
 # proxirr
 
-R package to calculate Alpha and Beta Proximity to Irreplaceability.
+R package to calculate Alpha, Beta and Gamma Proximity to Irreplaceability.
 
 The methods for Alpha and Beta Irreplaceability were first described in:
 

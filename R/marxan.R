@@ -196,19 +196,55 @@ marxan_betas = function(input, triage=FALSE) {
   return(pu)
 }
 
-#' Marxan: Save Alpha and Beta Irreplaceabilities
+
+#' Marxan: Gamma irreplaceabilities
 #'
-#' Saves the outputs of \code{\link{marxan_alphas}} and \code{\link{marxan_betas}}
-#' in the marxan output folder.
+#' Given a valid Marxan input.dat file, returns a copy of the PUNAME file
+#' (pu.dat), with an additional column containing the planning unit's gamma of
+#' irreplaceability.
 #'
-#' Two files ('_proxirr_alphas.csv', '_proxirr_betas.csv') will be created
-#' prefixed with the scenario name indicated in 'input.dat' ('SCENNAME').
+#' @param input string - The address of the input.dat file.
+#' @param triage logical - Should features with unachievable targets be given an
+#' irreplaceability of 0? See \code{\link{gamma}}.
+#' @return A data.frame
+#' @examples
+#' \dontrun{
+#' marxan_gammas('/data/marxan/analysis01/input.dat')
+#' marxan_gammas('C:\data\marxan\analysis01\input.dat')
+#' }
+#' @author Daniele Baisero, \email{daniele.baisero@gmail.com}
+#' @export
+marxan_gammas = function(input, triage=FALSE) {
+  # preload pu file
+  pu = proxirr::.marxan_data_reader(input, 'pu')
+  # precalculate all alphas
+  alphas = proxirr::marxan_alphas(input, triage)
+  # calculate gammas
+  pu$gamma = sapply(
+    pu$id,
+    function(x) {proxirr::.gamma(alphas[alphas$pu==x,'alpha'])}
+  )
+  # return
+  return(pu)
+}
+
+
+#' Marxan: Save Alpha, Beta and Gamma Irreplaceabilities
+#'
+#' Saves the outputs of \code{\link{marxan_alphas}}, \code{\link{marxan_betas}},
+#' and \code{\link{marxan_gammas}} in the marxan output folder.
+#'
+#' Three files ('_proxirr_alphas.csv', '_proxirr_betas.csv',
+#' '_proxirr_gammas.csv') will be created prefixed with the scenario name
+#' indicated in 'input.dat' ('SCENNAME').
 #'
 #' @param input string - The address of the input.dat file.
 #' @param alphas logical - Should the Alpha Irreplaceability output be saved?
 #' @param betas logical - Should the Beta Irreplaceability output be saved?
+#' @param gammas logical - Should the Gamma of Irreplaceability output be saved?
 #' @param triage logical - Should features with unachievable targets be given an
-#' irreplaceability of 0? See \code{\link{alpha}} and \code{\link{beta}}.
+#' irreplaceability of 0? See \code{\link{alpha}}, \code{\link{beta}} and
+#' \code{\link{beta}}.
 #' @return TRUE
 #' @examples
 #' \dontrun{
@@ -217,7 +253,7 @@ marxan_betas = function(input, triage=FALSE) {
 #' }
 #' @author Daniele Baisero, \email{daniele.baisero@gmail.com}
 #' @export
-marxan_run = function(input, alphas=TRUE, betas=TRUE, triage=FALSE) {
+marxan_run = function(input, alphas=TRUE, betas=TRUE, gammas=TRUE, triage=FALSE) {
   # save alphas
   if(alphas) {
     path.alphas = file.path(
@@ -251,6 +287,23 @@ marxan_run = function(input, alphas=TRUE, betas=TRUE, triage=FALSE) {
       row.names = FALSE
     )
     message('Betas saved to:  ', path.betas)
+  }
+    # save gammas
+  if(gammas) {
+    path.gammas = file.path(
+      dirname(input),
+      proxirr::.marxan_input_parameter(input, 'OUTPUTDIR'),
+      paste(
+        proxirr::.marxan_input_parameter(input, 'SCENNAME'),
+        'proxirr_gammas.csv',
+        sep = '_')
+    )
+    utils::write.csv(
+      proxirr::marxan_gammas(input, triage),
+      path.gammas,
+      row.names = FALSE
+    )
+    message('Gammas saved to:  ', path.gammas)
   }
   # return
   return(invisible(TRUE))
